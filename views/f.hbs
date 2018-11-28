@@ -1,0 +1,35 @@
+<h1>{{title}}</h1>
+
+
+<div class="form-group">
+    <label for="num">Type a number</label>
+    <input type="text" class="form-control" name=num id="num" placeholder="Type a number">
+</div>
+<button type="submit" name=btnG id="btnG" class="btn btn-default">Submit</button>
+
+<div class="center-block">
+    <p class="bg-primary">
+        <h3>Result : <span id="result"></span></h3>
+    </p>    
+</div>
+
+
+<script>
+
+    $(document).ready(function(){
+     
+        $( "#btnG" ).click(function() {
+            $.post(
+                '/api/fibonacci',
+                { num : $('#num').val() },
+                function(data) {
+                    $('#result').text(data.result);
+                },
+                'json'
+            );
+        });
+
+    });
+
+
+</script>

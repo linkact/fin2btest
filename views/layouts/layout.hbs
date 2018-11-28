@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+
+<script   src="https://code.jquery.com/jquery-1.12.3.min.js"   integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="   crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<script>
+    
+    var now = new Date();
+
+    function startTime() {
+
+        now.setSeconds(now.getSeconds() + 1 );
+
+        var yy = now.getFullYear();
+        var mm = now.getMonth() + 1;
+        var dd = now.getDate();
+        mm = checkFormat(mm);
+        dd = checkFormat(dd);
+        var h = now.getHours();
+        var m = now.getMinutes();
+        var s = now.getSeconds();
+        h = checkFormat(h);
+        m = checkFormat(m);
+        s = checkFormat(s);
+
+        $('#clock').text(yy + "년" + mm + "월" + dd + "일 " + h + "시" + m + "분" + s + "초");
+        var t = setTimeout(startTime, 1000);
+        
+    }
+    
+    // 숫자가 10보다 작을 경우 앞에 0을 붙여줌
+    function checkFormat(i) {
+        if (i < 10) {i = "0" + i}; 
+        return i;
+    }
+
+   $(document).ready(function(){
+     
+        $.get(
+            '/api/now',
+            {},
+            function(data) {
+                now = new Date(data.now);
+                startTime();
+            },
+            'json'
+        );
+
+    });
+  </script>
+
+</head>
+<body>
+{{> header }}
+<div class="container">
+    {{{body}}}
+</div>
+
+
+</body>
+</html>

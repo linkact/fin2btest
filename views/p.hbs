@@ -1,0 +1,44 @@
+<h1>{{title}}</h1>
+
+
+<div class="form-group">
+    <label for="password1">Password</label>
+    <input type="password" class="form-control" id="password1" placeholder="Password">
+</div>
+<button type="submit" class="btn btn-default" id="btnG">Submit</button>
+
+
+<script>
+
+    var checkPasswordPattern = function(pwStr) {
+        var matches = /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=])(?=\S+$).{8,}/;
+        var rtn = matches.test(pwStr);
+        return rtn;
+    };
+
+
+
+    $(document).ready(function(){
+     
+        $( "#btnG" ).click(function() {
+            
+            var inPassword = $('#password1').val();
+            var checkResult = checkPasswordPattern(inPassword);
+            if(!checkResult) {
+                
+                alert("Validation Error");
+
+            } else {
+                
+                alert("Success !");
+
+                //... submit...
+            }
+
+
+        });
+
+    });
+
+
+</script>
