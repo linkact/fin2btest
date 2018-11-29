@@ -6,9 +6,14 @@ Fin2B Online Test
 $ npm install
 ```
 
-# Run the app
+# Run the service
 ```
 $ npm start
+```
+
+# In your web brower
+```
+http://ip:3000
 ```
 
 # 기타사항
