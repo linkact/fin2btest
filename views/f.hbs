@@ -20,6 +20,7 @@
      
         $( "#btnG" ).click(function() {
             $.post(
+                // 계산은 server에서 처리
                 '/api/fibonacci',
                 { num : $('#num').val() },
                 function(data) {
